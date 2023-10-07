@@ -1,12 +1,17 @@
 import pygame
 from character import Character
 from enemy import Enemy
+import os
+print("Directory di lavoro corrente:", os.getcwd())
+
+
+
 
 pygame.init()
 
 # Definizione delle costanti
-screen_width = 800
-screen_height = 600
+screen_width = 500
+screen_height = 500
 red = (255, 0, 0)
 
 # Inizializzazione di Pygame e creazione della finestra
@@ -20,7 +25,6 @@ def main():
     screen = init_game()
 
     character = Character(100, 100, hp=100, mp=50, att=20, dif=10, spd=0.2)
-    enemy = Enemy(100, 100, hp=100, mp=50, att=20, dif=10, spd=0.2)
 
     running = True
     while running:
@@ -29,7 +33,7 @@ def main():
                 running = False
 
         handle_input(character)
-        draw(screen, character,enemy)
+        draw(screen, character)
     
     pygame.quit()
 
@@ -46,10 +50,9 @@ def handle_input(character):
         character.move(character.spd, 0)
 
 # Disegna il rettangolo
-def draw(screen, character,enemy):
+def draw(screen, character):
     screen.fill((107, 140, 52))
     character.draw(screen)
-    enemy.draw(screen)
     pygame.display.update()
 
 if __name__ == "__main__":
